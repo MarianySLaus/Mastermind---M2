@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explicação do Código | Mastermind em C++</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir para o início">
+      <span class="brand-mark">M</span>
+      <span>Mastermind C++</span>
+    </a>
+    <nav class="nav" aria-label="Seções do site">
+      <a href="#visao-geral">Visão geral</a>
+      <a href="#funcoes">Funções</a>
+      <a href="#fluxo">Fluxo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-art" aria-hidden="true">
+        <div class="peg peg-1">1</div>
+        <div class="peg peg-2">4</div>
+        <div class="peg peg-3">2</div>
+        <div class="peg peg-4">6</div>
+        <div class="trail one"></div>
+        <div class="trail two"></div>
+        <div class="trail three"></div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Trabalho de Algoritmos e Programação</p>
+        <h1>Explicação do jogo Mastermind em C++</h1>
+        <p>
+          Este site explica o código feito por Mariany Santos Laus: um jogo de senha secreta,
+          com níveis de dificuldade, tentativas limitadas e dicas sobre números corretos.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#visao-geral">Entender o jogo</a>
+          <a class="button ghost" href="#funcoes">Ver funções</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visao-geral">
+      <div class="section-heading">
+        <p class="eyebrow">Ideia principal</p>
+        <h2>O que o programa faz?</h2>
+      </div>
+      <div class="overview-grid">
+        <article class="info-card">
+          <span class="card-number">01</span>
+          <h3>Cria uma senha secreta</h3>
+          <p>O programa sorteia números de 1 a 6, sem repetir, e guarda tudo no vetor <code>codigo</code>.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-number">02</span>
+          <h3>Recebe palpites</h3>
+          <p>O jogador digita uma sequência de números, que é armazenada no vetor <code>palpite</code>.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-number">03</span>
+          <h3>Compara as respostas</h3>
+          <p>O jogo informa quantos números estão na posição correta e quantos existem na senha, mas em outra posição.</p>
+        </article>
+        <article class="info-card">
+          <span class="card-number">04</span>
+          <h3>Termina com vitória ou derrota</h3>
+          <p>Se o jogador acertar tudo, vence. Se acabarem as tentativas, o programa mostra a senha correta.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="rules-layout">
+        <div>
+          <p class="eyebrow">Dificuldades</p>
+          <h2>Como mudam o tamanho da senha e as tentativas</h2>
+          <p class="section-text">
+            A opção de dificuldade altera duas variáveis importantes: <code>tamanho</code>, que define
+            quantos números a senha terá, e <code>tentativas</code>, que define quantas chances o jogador recebe.
+          </p>
+        </div>
+        <div class="difficulty-table" role="table" aria-label="Tabela de dificuldades">
+          <div class="table-row table-head" role="row">
+            <span>Dificuldade</span>
+            <span>Senha</span>
+            <span>Tentativas</span>
+          </div>
+          <div class="table-row" role="row">
+            <span>Fácil</span>
+            <span>3 números</span>
+            <span>8</span>
+          </div>
+          <div class="table-row" role="row">
+            <span>Média</span>
+            <span>4 números</span>
+            <span>10</span>
+          </div>
+          <div class="table-row" role="row">
+            <span>Difícil</span>
+            <span>5 números</span>
+            <span>12</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funcoes">
+      <div class="section-heading">
+        <p class="eyebrow">Por partes</p>
+        <h2>Funções do código</h2>
+      </div>
+      <div class="function-list">
+        <article class="function-item">
+          <div class="function-label">gerarCodigo()</div>
+          <div>
+            <h3>Gera a senha secreta</h3>
+            <p>
+              Usa <code>rand() % 6 + 1</code> para sortear números entre 1 e 6. O vetor
+              <code>usado</code> impede que um número apareça mais de uma vez.
+            </p>
+          </div>
+        </article>
+        <article class="function-item">
+          <div class="function-label">jogar()</div>
+          <div>
+            <h3>Controla uma partida</h3>
+            <p>
+              Chama a função que cria a senha, lê os palpites, compara com a senha secreta
+              e mostra as dicas de cada rodada.
+            </p>
+          </div>
+        </article>
+        <article class="function-item">
+          <div class="function-label">main()</div>
+          <div>
+            <h3>Mostra o menu principal</h3>
+            <p>
+              Inicializa o sorteio com <code>srand(time(NULL))</code> e repete o menu até o usuário escolher
+              a opção <code>4 - Fim</code>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section band" id="fluxo">
+      <div class="section-heading left">
+        <p class="eyebrow">Passo a passo</p>
+        <h2>Fluxo de uma partida</h2>
+      </div>
+      <ol class="timeline">
+        <li>
+          <span>1</span>
+          <p>O jogador escolhe jogar no menu.</p>
+        </li>
+        <li>
+          <span>2</span>
+          <p>O programa sorteia uma senha sem números repetidos.</p>
+        </li>
+        <li>
+          <span>3</span>
+          <p>O jogador digita o palpite com a quantidade de números da dificuldade atual.</p>
+        </li>
+        <li>
+          <span>4</span>
+          <p>O programa conta acertos na posição correta e acertos fora de posição.</p>
+        </li>
+        <li>
+          <span>5</span>
+          <p>Se acertar todos, vence. Se as tentativas acabarem, perde e vê a senha.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section simulator" aria-labelledby="simulador-title">
+      <div>
+        <p class="eyebrow">Exemplo visual</p>
+        <h2 id="simulador-title">Como as dicas funcionam</h2>
+        <p class="section-text">
+          Neste exemplo, a senha secreta é <code>1 4 2 6</code>. Clique nos palpites para ver
+          como o programa contaria os acertos.
+        </p>
+      </div>
+      <div class="sim-panel">
+        <div class="secret-row" aria-label="Senha secreta do exemplo">
+          <span>1</span><span>4</span><span>2</span><span>6</span>
+        </div>
+        <div class="guess-buttons" aria-label="Escolha um palpite">
+          <button type="button" data-pos="1" data-out="2" data-guess="1 2 5 4">1 2 5 4</button>
+          <button type="button" data-pos="0" data-out="4" data-guess="6 2 4 1">6 2 4 1</button>
+          <button type="button" data-pos="4" data-out="0" data-guess="1 4 2 6">1 4 2 6</button>
+        </div>
+        <div class="result-box" aria-live="polite">
+          <strong>Palpite:</strong> <span id="guessText">1 2 5 4</span><br>
+          <strong>Na posição correta:</strong> <span id="posText">1</span><br>
+          <strong>Na posição errada:</strong> <span id="outText">2</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Site explicativo do código de Mariany Santos Laus - Junho/2026.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
